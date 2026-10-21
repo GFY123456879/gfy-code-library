@@ -1,0 +1,17 @@
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: gfy-redis
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+    networks:
+      - gfy-backend
+
+volumes:
+  redis-data:
+
+networks:
+  gfy-backend:
+    name: gfy-backend
